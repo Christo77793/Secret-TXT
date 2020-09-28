@@ -11,7 +11,7 @@ Primarily you will need to pip install kivy (check the kivy website for detailed
 
 MODIFICATIONS
 
-On line 26, you can set your own custom location, to save the image to wherever you'd like and you can also set the name for the encoded image.
+On line 26 in hide.py, you can set your own custom location, to save the image to wherever you'd like and you can also set the name for the encoded image.
 
 #-------------------------------------------------------------------------------------------------------------#
 
