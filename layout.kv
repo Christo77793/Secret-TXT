@@ -1,0 +1,251 @@
+WindowManger:
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: r"Images/Wallpaper.jpg"
+
+    SelectScreen:
+    EncodeScreen:
+    SelectFileEncode:
+    DecodeScreen:
+    SelectFileDecode:
+
+
+<SelectScreen>:
+    id: choose_option
+    name: "main"
+
+    Label:
+        text: "Secret TXT"
+        pos_hint:{'center_x': .5, 'center_y': .75}
+        font_size: '51sp'
+
+    RoundedButton:
+        text: "Encode"
+        font_size: '29sp'
+        pos_hint:{'center_x': .3, 'center_y': .45}
+        size_hint: 0.3, 0.15
+
+        on_release:
+            app.root.current = "encode"
+            root.manager.transition.direction = "left"
+
+    RoundedButton:
+        text: "Decode"
+        font_size: '29sp'
+        pos_hint:{'center_x': .7, 'center_y': .45}
+        size_hint: 0.3, 0.15
+
+        on_release:
+            app.root.current = "decode"
+            root.manager.transition.direction = "left"
+
+    Label:
+        text: "Developed by:- Christopher J.S."
+        pos_hint:{'center_x': .5, 'center_y': .05}
+        font_size: '11sp'
+
+<ImageButton@ButtonBehavior+Image>:
+    size_hint: 1, 1
+
+<EncodeScreen>:
+
+    id: encode_menu
+    name: "encode"
+
+    FloatLayout:
+
+        Label:
+            text: "Select Image: "
+            font_size: '29sp'
+            pos_hint:{'center_x': .25, 'center_y': .75}
+            size_hint: 0.3, 0.1
+
+        TextInput:
+            id: encode_image_path
+            pos_hint:{'center_x': .6, 'center_y': .75}
+            size_hint: 0.3, 0.1
+
+        ImageButton:
+            source: r"Images/folder.png"
+            pos_hint:{'center_x': .83, 'center_y': .75}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "choose_file_encode"
+                root.manager.transition.direction = "left"
+
+        RoundedButton:
+            text: "Get image path"
+            pos_hint:{'center_x': .6, 'center_y': .6}
+            size_hint: 0.19, 0.1
+            on_press: root.set_text()
+
+        Label:
+            text: "Text to Encode: "
+            font_size: '29sp'
+            pos_hint:{'center_x': .25, 'center_y': .45}
+            size_hint: 0.3, 0.1
+
+        TextInput:
+            id: user_text
+            pos_hint:{'center_x': .6, 'center_y': .45}
+            size_hint: 0.3, 0.1
+
+        RoundedButton:
+            text: "Encode"
+            pos_hint:{'center_x': .45, 'center_y': .25}
+            size_hint: 0.2, 0.1
+            on_press: root.encode_txt_img()
+
+        ImageButton:
+            source: r"Images/previous.png"
+            pos_hint:{'center_x': .65, 'center_y': .25}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+                root.clear_text()
+
+        Label:
+            id: encode_result
+            pos_hint:{'center_x': .5, 'center_y': .05}
+            size_hint: 0.3, 0.1
+            font_size: '11sp'
+
+<SelectFileEncode>:
+
+    id: browse_file_encode
+    name: "choose_file_encode"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        FileChooserIconView:
+            id: selected_file
+            on_selection: browse_file_encode.get_source_encode(selected_file.selection)
+
+        Image:
+            id:image
+            source: "."
+            color: (0,0,0,0) if self.source == "." else (1,1,1,1)
+            pos_hint:{'center_x': 0.5, 'center_y': 0}
+            size_hint: 0.7, 0.5
+
+        ImageButton:
+            source: r"Images/previous.png"
+            pos_hint:{'center_x': 0.5, 'center_y': .15}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "encode"
+                root.manager.transition.direction = "right"
+
+<DecodeScreen>:
+    name: "decode"
+
+    FloatLayout:
+
+        Label:
+            text: "Select Image: "
+            font_size: '29sp'
+            pos_hint:{'center_x': .25, 'center_y': .75}
+            size_hint: 0.3, 0.1
+
+        TextInput:
+            id: decode_image_path
+            pos_hint:{'center_x': .6, 'center_y': .75}
+            size_hint: 0.3, 0.1
+
+        ImageButton:
+            source: r"Images/folder.png"
+            pos_hint:{'center_x': .83, 'center_y': .75}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "choose_file_decode"
+                root.manager.transition.direction = "left"
+
+        RoundedButton:
+            text: "Get image path"
+            pos_hint:{'center_x': .6, 'center_y': .6}
+            size_hint: 0.19, 0.1
+            on_press: root.set_text()
+
+        Label:
+            text: "Decoded Text: "
+            font_size: '29sp'
+            pos_hint:{'center_x': .25, 'center_y': .45}
+            size_hint: 0.3, 0.1
+
+        TextInput:
+            id: text_decoded
+            pos_hint:{'center_x': .6, 'center_y': .45}
+            size_hint: 0.3, 0.1
+
+        RoundedButton:
+            text: "Decode"
+            pos_hint:{'center_x': .45, 'center_y': .25}
+            size_hint: 0.2, 0.1
+            on_press: root.decode_img_txt()
+
+        ImageButton:
+            source: r"Images/previous.png"
+            pos_hint:{'center_x': .65, 'center_y': .25}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+                root.clear_text()
+
+        Label:
+            id: decode_result
+            pos_hint:{'center_x': .5, 'center_y': .05}
+            size_hint: 0.3, 0.1
+            font_size: '11sp'
+
+<SelectFileDecode>:
+
+    id: browse_file_decode
+    name: "choose_file_decode"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        FileChooserIconView:
+            id: selected_file
+            on_selection: browse_file_decode.get_source_decode(selected_file.selection)
+
+        Image:
+            id:image
+            source: "."
+            color: (0,0,0,0) if self.source == "." else (1,1,1,1)
+            pos_hint:{'center_x': 0.5, 'center_y': 0}
+            size_hint: 0.7, 0.5
+
+        ImageButton:
+            source: r"Images/previous.png"
+            pos_hint:{'center_x': 0.5, 'center_y': .15}
+            size_hint: 0.25, 0.1
+
+            on_release:
+                app.root.current = "decode"
+                root.manager.transition.direction = "right"
+
+
+<RoundedButton@Button>:
+    background_color: 0, 0, 0, 0
+    background_normal: ""
+    back_color: (0, 0.73, 0.23, 1) if self.state == "normal" else (0, 0.63, 0.17, 1)
+    border_radius: [18]
+    canvas.before:
+        Color:
+            rgba: self.back_color or (0,0,0,0)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: self.border_radius
