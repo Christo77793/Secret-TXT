@@ -3,9 +3,15 @@ A simple program that uses steganography to hide data in media files. This progr
 
 #-------------------------------------------------------------------------------------------------------------#
 
-EXE
+![Screenshot](https://raw.githubusercontent.com/Christo77793/Secret-TXT/master/Screenshots/Screenshot%20(1).png)
 
-Working on a way to package it up, so as to share a Windows exe that require no installations.
+#-------------------------------------------------------------------------------------------------------------#
+
+TRY IT OUT
+
+https://drive.google.com/drive/folders/1RkwCL6D57TEvrun4umFqtPguTFrwJNiL?usp=sharing (_v1.0_)
+
+Read instructions before you get started!
 
 #-------------------------------------------------------------------------------------------------------------#
 
