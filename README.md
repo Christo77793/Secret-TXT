@@ -3,9 +3,9 @@ A simple program that uses steganography to hide data in media files. This progr
 
 #-------------------------------------------------------------------------------------------------------------#
 
-REQURIEMENTS
+EXE
 
-Primarily you will need to pip install kivy (check the kivy website for detailed instructions) and stegano libraries.
+Working on a way to package it up, so as to share a Windows exe that require no installations.
 
 #-------------------------------------------------------------------------------------------------------------#
 
@@ -15,8 +15,8 @@ On line 26 in hide.py, you can set your own custom location, to save the image t
 
 #-------------------------------------------------------------------------------------------------------------#
 
-EXE
+REQURIEMENTS
 
-Working on a way to package it up, so as to share a Windows exe that require no installations.
+Primarily you will need to pip install kivy (check the kivy website for detailed instructions) and stegano libraries.
 
 #-------------------------------------------------------------------------------------------------------------#
