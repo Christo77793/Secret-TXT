@@ -1,3 +1,4 @@
+import os, sys
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
@@ -5,6 +6,11 @@ from kivy.core.window import Window
 from stegano import lsb  # Stegano Library
 
 Window.size = (850, 550)  # Sets the GUI size to start with
+
+
+def resource_path(relative_path):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 
 
 class SelectScreen(Screen):  # A class to initialise the screen to choose between encode and decode
@@ -64,7 +70,7 @@ class DecodeScreen(Screen):  # A class to initalise the decode screen
         except:
             self.ids.decode_image_path.text = "No image selected"
 
-    def decode_img_txt(self):   # Fn to decode our txt from our image
+    def decode_img_txt(self):  # Fn to decode our txt from our image
         try:
             sel_image = self.ids.decode_image_path.text
             hidden_text = lsb.reveal(sel_image)
