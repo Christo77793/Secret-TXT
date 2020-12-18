@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 from stegano import lsb  # Stegano Library
 
-Window.size = (850, 550)  # Sets the GUI size to start with
+# Window.size = (850, 550)  # Sets the GUI size to start with
 
 
 def resource_path(relative_path):
