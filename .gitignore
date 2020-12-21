@@ -4,3 +4,4 @@ venv/
 __pycache__/
 Ignore/
 exe/
+debug.log
