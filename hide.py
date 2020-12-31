@@ -1,4 +1,4 @@
-import os, sys
+import os
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
@@ -7,11 +7,6 @@ from stegano import lsb, exifHeader  # Stegano Library {lsb -> png, exifHeader -
 
 
 # Window.size = (850, 550)  # Sets the GUI size to start with
-
-#
-# def resource_path(relative_path):
-#     base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
-#     return os.path.join(base_path, relative_path)
 
 
 class SelectScreen(Screen):  # A class to initialise the screen to choose between encode and decode
@@ -29,18 +24,18 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
 
     def encode_txt_img(self):  # Fn to encode our txt to image
 
-        sel_image = self.ids.encode_image_path.text # getting the file location
-        user_text = self.ids.user_text.text # text to be encoded
+        sel_image = self.ids.encode_image_path.text  # getting the file location
+        user_text = self.ids.user_text.text  # text to be encoded
 
-        slash_count = sel_image.count("\\") # getting the file location
+        slash_count = sel_image.count("\\")  # getting the file location
 
-        img_name = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[0] # selecting only the file name with no extension
-        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1] # selecting only the file type with extension
+        img_name = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[0]  # selecting only the file name with no extension
+        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1]  # selecting only the file type with extension
 
         # Checking if the required folder exists
         if os.path.exists(r"C:\Secret TXT"):
             pass
-        else: # if not creating it
+        else:  # if not creating it
             os.makedirs(r"C:\Secret TXT")
 
         try:
@@ -52,7 +47,7 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
 
             elif img_type == "jpg" or img_type == "jpeg":
                 secret_img = f"C:\\Secret TXT\\{img_name} [Encoded].{img_type}"
-                exifHeader.hide(sel_image,secret_img, secret_message=user_text)
+                exifHeader.hide(sel_image, secret_img, secret_message=user_text)
                 self.ids.encode_result.text = "Encoding was successful"
 
             # if type is not supported
@@ -90,10 +85,10 @@ class DecodeScreen(Screen):  # A class to initalise the decode screen
 
     def decode_img_txt(self):  # Fn to decode our txt from our image
 
-        sel_image = self.ids.decode_image_path.text # getting the file location
+        sel_image = self.ids.decode_image_path.text  # getting the file location
 
-        slash_count = sel_image.count("\\") # getting the file location
-        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1] # selecting only the file type with extension
+        slash_count = sel_image.count("\\")  # getting the file location
+        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1]  # selecting only the file type with extension
 
         try:
             # checking the type of file first
