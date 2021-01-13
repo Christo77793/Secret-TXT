@@ -2,8 +2,8 @@ import os
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window
-from stegano import lsb, exifHeader  # Stegano Library {lsb -> png, exifHeader -> jpg/jpeg
+# from kivy.core.window import Window
+from stegano import lsb, exifHeader  # Stegano Library {lsb -> png, exifHeader -> jpg/jpeg}
 
 
 # Window.size = (850, 550)  # Sets the GUI size to start with
@@ -30,7 +30,7 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
         slash_count = sel_image.count("\\")  # getting the file location
 
         img_name = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[0]  # selecting only the file name with no extension
-        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1]  # selecting only the file type with extension
+        img_type = sel_image.split("\\", slash_count)[slash_count].split(".", 1)[1]  # selecting only the file extension
 
         # Checking if the required folder exists
         if os.path.exists(r"C:\Secret TXT"):
@@ -119,28 +119,28 @@ class DecodeScreen(Screen):  # A class to initalise the decode screen
 
 class SelectFileDecode(Screen):  # A class to select a file
 
-    def get_source_decode(self, filePath):
+    def get_source_decode(self, file_path):
         # Getting the file path
         try:
-            self.ids.image.source = filePath[0]
-            DecodeScreen.file_path = filePath[0]
+            self.ids.image.source = file_path[0]
+            DecodeScreen.file_path = file_path[0]
 
         except:
             DecodeScreen.file_path = "No path"
 
 
-class WindowManger(ScreenManager):  # A class to manage between different screens
+class WindowManger(ScreenManager):  # A class to switch between different screens
     pass
 
 
-kv = Builder.load_file("layout.kv")
+kv = Builder.load_file("layout.kv")  # kv stores the layout file
 
 
-class SecretTextApp(App):
+class SecretTextApp(App):  # A base class of this app
 
-    def build(self):
+    def build(self):  # In the lifecycle the build() is executed after run()
         return kv
 
 
-if __name__ == '__main__':
-    SecretTextApp().run()
+if __name__ == '__main__': # used to ensure only "main" is run
+    SecretTextApp().run()  # run() is used to start this app

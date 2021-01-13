@@ -1,12 +1,13 @@
 WindowManger:
 
     canvas.before:
+    # loading a common wallpaper for all screens
         Rectangle:
             pos: self.pos
             size: self.size
             source: r"Images/Wallpaper.jpg"
 
-
+    # initializing the screens
     SelectScreen:
     EncodeScreen:
     SelectFileEncode:
@@ -15,7 +16,7 @@ WindowManger:
 
 
 <SelectScreen>:
-    id: choose_option
+    # a name to call this screen
     name: "main"
 
     Label:
@@ -30,7 +31,9 @@ WindowManger:
         size_hint: 0.3, 0.15
 
         on_release:
+            # go to the encode screen
             app.root.current = "encode"
+            # this screen fades to the left
             root.manager.transition.direction = "left"
 
     RoundedButton:
@@ -49,11 +52,11 @@ WindowManger:
         font_size: '11sp'
 
 <ImageButton@ButtonBehavior+Image>:
+    # defining a class ImageButton that has the behaviours of button and image class
     size_hint: 1, 1
 
 <EncodeScreen>:
-
-    id: encode_menu
+    # a name to call this screen
     name: "encode"
 
     FloatLayout:
@@ -109,6 +112,7 @@ WindowManger:
             on_release:
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
+                # calling the function clear_text() defined in EncodeScreen
                 root.clear_text()
 
         Label:
@@ -125,6 +129,7 @@ WindowManger:
     BoxLayout:
         orientation: "vertical"
 
+        # a file selector with icons
         FileChooserIconView:
             id: selected_file
             on_selection: browse_file_encode.get_source_encode(selected_file.selection)
@@ -132,6 +137,8 @@ WindowManger:
         Image:
             id:image
             source: "."
+            # if there is no image or it is "." it will show a white box
+            # to avoid that we set it to (0,0,0,0)
             color: (0,0,0,0) if self.source == "." else (1,1,1,1)
             pos_hint:{'center_x': 0.5, 'center_y': 0}
             size_hint: 0.7, 0.5
@@ -238,8 +245,10 @@ WindowManger:
                 root.manager.transition.direction = "right"
 
 
+# defining a rounded button class that is similar to a button class
 <RoundedButton@Button>:
     background_color: 0, 0, 0, 0
+    # color change based on if button is clicked or not
     back_color: (0, 0.73, 0.23, 1) if self.state == "normal" else (0, 0.63, 0.17, 1)
     canvas.before:
         Color:
