@@ -40,14 +40,27 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
 
         try:
             # checking the type of file first
+
+            # for png types
             if img_type == "png":
-                secret_img = f"C:\\Secret TXT\\{img_name} [Encoded].{img_type}"
-                lsb.hide(sel_image, message=user_text).save(secret_img)
+                secret_img = f"C:\\Secret TXT\\{img_name} [Encoded].{img_type}"  # setting the location to save the encoded images
+
+                # lsb is used for png
+                # hide is used to encode the image
+                # it's parameters are selected image, the text to be encoded
+                lsb.hide(sel_image, message=user_text).save(secret_img)  # save is used to save the image to the required location
+
                 self.ids.encode_result.text = "Encoding was successful"
 
+            # for jpg/jpeg types
             elif img_type == "jpg" or img_type == "jpeg":
                 secret_img = f"C:\\Secret TXT\\{img_name} [Encoded].{img_type}"
+
+                # exifHeader is used for jpg/jpeg
+                # hide is used to encode the image
+                # it's parameters are selected image, location to be saved, and the text to be encoded
                 exifHeader.hide(sel_image, secret_img, secret_message=user_text)
+
                 self.ids.encode_result.text = "Encoding was successful"
 
             # if type is not supported
@@ -55,6 +68,7 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
                 self.ids.encode_result.text = "Type not supported"
         except:
 
+            # fail-safe
             self.ids.encode_result.text = "Encoding has failed"
 
     def clear_text(self):  # Fn to clear screen on leaving the screen
@@ -92,21 +106,37 @@ class DecodeScreen(Screen):  # A class to initalise the decode screen
 
         try:
             # checking the type of file first
-            hidden_text = ""
+            hidden_text = ""  # initializing a variable
 
+            # img type is png
             if img_type == "png":
+
+                # lsb for png
+                # reveal is used to decode
+                # it's parameter is the selected image
                 hidden_text = lsb.reveal(sel_image)
 
+            # img type is jpg/jpeg
             elif img_type == "jpg" or img_type == "jpeg":
+
+                # exifHeader for jpg/jpeg
+                # reveal is used to decode
+                # it's parameter is the selected image
                 hidden_text = exifHeader.reveal(sel_image)
 
+            # checking if there is anything to be decoded
             if hidden_text is not "":
+
                 self.ids.text_decoded.text = hidden_text
                 self.ids.decode_result.text = "Decoding was successful"
+
             else:
-                self.ids.text_decoded.text = ""
+
+                self.ids.text_decoded.text = ""  # setting the text as empty if there is nothing to decode
                 self.ids.decode_result.text = "Nothing to Decode"
         except:
+
+            # fail-safe
             self.ids.text_decoded.text = ""
             self.ids.decode_result.text = "Decoding has failed"
 
@@ -138,9 +168,9 @@ kv = Builder.load_file("layout.kv")  # kv stores the layout file
 
 class SecretTextApp(App):  # A base class of this app
 
-    def build(self):  # In the lifecycle the build() is executed after run()
+    def build(self):  # In the Livy lifecycle the build() is executed after run()
         return kv
 
 
-if __name__ == '__main__': # used to ensure only "main" is run
+if __name__ == '__main__':  # used to ensure only "main" is run
     SecretTextApp().run()  # run() is used to start this app
