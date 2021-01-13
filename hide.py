@@ -18,7 +18,7 @@ class EncodeScreen(Screen):  # A class to initialise the encode screen
     def set_text(self):  # Fn to get file path
 
         try:
-            self.ids.encode_image_path.text = EncodeScreen.file_path
+            self.ids.encode_image_path.text = EncodeScreen.file_path  # this value is obtained from the select encode screen
         except:
             self.ids.encode_image_path.text = "No image selected"
 
@@ -93,7 +93,7 @@ class DecodeScreen(Screen):  # A class to initalise the decode screen
 
     def set_text(self):  # Fn to get file path
         try:
-            self.ids.decode_image_path.text = DecodeScreen.file_path
+            self.ids.decode_image_path.text = DecodeScreen.file_path  # this value is obtained from the select decode screen
         except:
             self.ids.decode_image_path.text = "No image selected"
 
