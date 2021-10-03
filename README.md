@@ -7,14 +7,6 @@ A simple program that uses steganography to hide data in media files. This progr
 
 #--------------------------------------------------------------------------------------------------------------------------------#
 
-TRY IT OUT
-
-https://drive.google.com/drive/folders/1RkwCL6D57TEvrun4umFqtPguTFrwJNiL?usp=sharing (_v1.1_)
-
-Read the instructions before you get started!
-
-#--------------------------------------------------------------------------------------------------------------------------------#
-
 REQUIREMENTS (for coding)
 
 Primarily you will need to pip install kivy (check the kivy website for detailed instructions) and stegano libraries.
